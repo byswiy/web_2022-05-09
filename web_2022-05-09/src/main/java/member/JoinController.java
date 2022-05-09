@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exception.BadParameterException;
 import util.Validator;
 import vo.MemberInfo;
 
@@ -26,28 +27,13 @@ public class JoinController extends HttpServlet {
 	
 	// 파라미터 검증
 	Validator validator = new Validator();
-	if(!validator.idValidator(id)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} else if(!validator.pwValidator(pw)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} else if(!pw.equals(pwChk)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} else if(!validator.nameValidator(name)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} else if(!validator.telvalidator(tel)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} else if(!validator.addrValidator(addr)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} else if(!validator.emailValidator(email)) {
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	} 
+	if(!validator.idValidator(id)) 				throw new BadParameterException();
+	else if(!validator.pwValidator(pw)) 		throw new BadParameterException();
+	else if(!pw.equals(pwChk)) 					throw new BadParameterException();
+	else if(!validator.nameValidator(name)) 	throw new BadParameterException();
+	else if(!validator.telvalidator(tel)) 		throw new BadParameterException();
+	else if(!validator.addrValidator(addr)) 	throw new BadParameterException();
+	else if(!validator.emailValidator(email))	throw new BadParameterException();
 	
 	System.out.println("id -> " + id);
 	System.out.println("pw -> " + pw);
