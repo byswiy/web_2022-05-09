@@ -60,6 +60,11 @@ public class JoinController extends HttpServlet {
 	// 전달 받은 값 뭉치기
 	MemberInfo memberInfo = new MemberInfo(id, pw, name, tel, addr, email, joinDate);
 	
+	MemberService service = new MemberService();
+	int status = service.join(memberInfo);
+	
+	response.setStatus(status);
+	
 	}
 
 }
