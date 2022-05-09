@@ -48,7 +48,14 @@ public class JoinController1 extends HttpServlet {
 		MemberInfo memberInfo = new MemberInfo(id, pw, name, tel, addr, email, joinDate);
 		
 		MemberService1 service = new MemberService1();
-		int status = service.join(memberInfo);
+		int status = service.selectService(memberInfo);
+		
+		if(status != 409) {
+			service = new MemberService1();
+			status = service.join(memberInfo);
+		}
+		
+		
 		
 		response.setStatus(status);
 		
