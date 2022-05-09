@@ -11,6 +11,12 @@ public class MemberInfo {
 	private String email;
 	private LocalDateTime joinDate;
 	
+	public MemberInfo(String id, String tel, String email) {
+		this.id = id;
+		this.tel = tel;
+		this.email = email;
+	}
+	
 	public MemberInfo(String id, String pw, String name, String tel, String addr, String email, LocalDateTime joinDate) {
 		this.id = id;
 		this.pw = pw;
