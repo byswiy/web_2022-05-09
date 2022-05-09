@@ -1,6 +1,6 @@
-package util;
+package util1;
 
-public class Validator {
+public class Validator1 {
 	public boolean idValidator(String id) {
 		// 아이디 길이
 		boolean correctId = false;
@@ -90,7 +90,7 @@ public class Validator {
 			}
 		}
 
-		if (correctPw) {
+		if (!correctPw) {
 			return false;
 		}
 
@@ -162,7 +162,7 @@ public class Validator {
 		         "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주특별자치도"};
 		
 		for(String region : city) {
-			if(region.equals(city)) {
+			if(region.equals(addr)) {
 				return true;
 			}
 		}

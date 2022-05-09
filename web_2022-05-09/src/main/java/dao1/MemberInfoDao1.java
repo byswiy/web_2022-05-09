@@ -1,17 +1,17 @@
-package dao;
+package dao1;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import util.Database;
-import vo.MemberInfo;
+import util1.Database;
+import vo1.MemberInfo;
 
-public class MemberInfoDao {
+public class MemberInfoDao1 {
 	public boolean insert(MemberInfo memberInfo) {
 		Database db = new Database();
 		
-		Connection conn = null;
+		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		
 		String sql = "INSERT INTO member_info(id, pw, name, tel, addr, email, joinDate) VALUES (?, ?, ?, ?, ?, ?, ?)";

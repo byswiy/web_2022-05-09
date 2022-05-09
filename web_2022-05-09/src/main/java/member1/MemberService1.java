@@ -1,11 +1,11 @@
-package member;
+package member1;
 
-import dao.MemberInfoDao;
-import vo.MemberInfo;
+import dao1.MemberInfoDao1;
+import vo1.MemberInfo;
 
-public class MemberService {
+public class MemberService1 {
 	public int join(MemberInfo memberInfo) {
-		MemberInfoDao dao = new MemberInfoDao();
+		MemberInfoDao1 dao = new MemberInfoDao1();
 		boolean result = dao.insert(memberInfo);
 		
 		if(result) {
