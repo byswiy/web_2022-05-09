@@ -30,26 +30,26 @@ public class loginController1 extends HttpServlet {
 			else if(!validator.pwValidator(pw))  throw new BadParameterException1();
 			
 			// 로그인할 아이디와 비밀번호를 저장할 MemberInfo 클래스를 가져와서
-			// 아이디와 비밀번호를 직접 저장한다
+			// 아이디와 비밀번호를 직접 저장한다 -> 전달받은 값을 합친다
 			MemberInfo loginInfo = new MemberInfo();
 			loginInfo.setId(id);
 			loginInfo.setPw(pw);
 			
 			// 로그인할 서비스를 가져온다
 			MemberService1 service = new MemberService1();
-			// 만약 로그인 메서드가 잘 동작한다면
+			// 만약 로그인 메서드가 잘 동작한다면(로그인에 성공했다면)
 			if(service.isLogin(loginInfo)) {
-				// 세션을 만들어 세션값을 저장하고 200번대 코드를 반환한ㄷ나
+				// 세션을 만들어 세션값을 저장하고 200번대 코드를 반환한다
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUserInfo", loginInfo);
 				
 				response.setStatus(HttpServletResponse.SC_OK);
 			} else {
-				// 메서드가 제대로 동작하지 못했다면 401코드를 반환한다
-				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+				// 메서드가 제대로 동작하지 못했다면(로그인에 실패했다면) 400코드를 반환한다 -> 전달 받은 값이 규칙에 맞지 않을 때
+				response.setStatus(HttpServletResponse.SC_CONFLICT);
 			}
 		} catch(BadParameterException1 e) {
-			// 예외가 발생했다면 409 코드를 반환한다
+			// 예외가 발생했다면 409 코드를 반환한다 -> 아이디 또는 비밀번호가 틀렸을 때
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 	
