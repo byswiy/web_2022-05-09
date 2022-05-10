@@ -113,6 +113,9 @@ public class MemberInfoDao1 {
 				// t_joinDate에 들어있는 밀리초를 떼기 -> 1000을 냐눠준다?
 				t_joinDate = t_joinDate.substring(0,19);
 				
+				// t_joinDate의 중간에 들어있는 공백문자를 T로 바꾸기
+				t_joinDate = t_joinDate.replace(' ', 'T');
+				
 				LocalDateTime joinDateTime = LocalDateTime.parse(t_joinDate);
 				
 				memberInfo = new MemberInfo(idx, id, pw, name, tel, addr, email, joinDateTime);
