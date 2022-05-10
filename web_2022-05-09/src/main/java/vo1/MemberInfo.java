@@ -12,6 +12,10 @@ public class MemberInfo {
 	private String email;
 	private LocalDateTime joinDate;
 	
+	public MemberInfo() {
+		
+	}
+	
 	public MemberInfo(String id, String tel, String email) {
 		this.id = id;
 		this.tel = tel;

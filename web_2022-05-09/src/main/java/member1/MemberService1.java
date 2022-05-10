@@ -17,6 +17,22 @@ public class MemberService1 {
 		}
 	}
 	
+	public boolean isLogin(MemberInfo loginInfo) {
+		MemberInfoDao1 dao = new MemberInfoDao1();
+		
+		MemberInfo memberInfo = dao.selectById(loginInfo.getId());
+		
+		if(memberInfo == null) {
+			return false;
+		} else {
+			if(loginInfo.getPw().equals(memberInfo.getPw())) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+	
 //	public int selectService(MemberInfo memberInfo) {
 //		MemberInfoDao1 dao = new MemberInfoDao1();
 //		boolean exist = dao.select(memberInfo);
