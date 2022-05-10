@@ -1,7 +1,5 @@
 package member1;
 
-import javax.servlet.http.HttpServletResponse;
-
 import dao1.MemberInfoDao1;
 import vo1.MemberInfo;
 
@@ -31,6 +29,12 @@ public class MemberService1 {
 				return true;
 			}
 		}
+	}
+	
+	public void updateMemberInfo(MemberInfo memberInfo) {
+		MemberInfoDao1 dao = new MemberInfoDao1();
+		
+		dao.updateMById(memberInfo);
 	}
 	
 //	public int selectService(MemberInfo memberInfo) {

@@ -16,9 +16,9 @@ public class MemberInfoDao1 {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		
-		String sql = "INSERT INTO member_info(id, pw, name, tel, addr, email, joinDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		
 		try {
+			String sql = "INSERT INTO member_info(id, pw, name, tel, addr, email, joinDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, memberInfo.getId());
@@ -209,4 +209,58 @@ public class MemberInfoDao1 {
 		return memberInfo;
 		
 	}
+	
+	public void updateMById(MemberInfo newMemberInfo) {
+		Database db = new Database();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		boolean result = false;
+		
+		try {
+			String sql = "UPDATE member_info SET pw = ?, name = ?, tel = ?, addr = ?, email = ? WHERE id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newMemberInfo.getPw());
+			pstmt.setString(2, newMemberInfo.getName());
+			pstmt.setString(3, newMemberInfo.getTel());
+			pstmt.setString(4, newMemberInfo.getAddr());
+			pstmt.setString(5, newMemberInfo.getEmail());
+			pstmt.setString(6, newMemberInfo.getId());
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
+	}
+	
+//	public boolean deleteMemberInfo(MemberInfo memberInfo) {
+//		Database db = new Database();
+//		
+//		Connection conn = db.getConnection();
+//		PreparedStatement pstmt = null;
+//		
+//		boolean result = false;
+//		
+//		try {
+//			String sql = "DELETE FROM member_info WHERE id = ?";
+//			
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, memberInfo.getId());
+//			
+//			int count = pstmt.executeUpdate();
+//			
+//			result = count == 1;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			db.closePstmt(pstmt);
+//			db.closeConn(conn);
+//		}
+//		return result;
+//	}
 }
