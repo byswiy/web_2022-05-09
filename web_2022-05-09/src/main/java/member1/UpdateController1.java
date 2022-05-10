@@ -17,6 +17,8 @@ import vo1.MemberInfo;
 public class UpdateController1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			request.setCharacterEncoding("UTF-8");
+			
 			String pw = request.getParameter("pw");
 			String name = request.getParameter("name");
 			String tel = request.getParameter("tel");
@@ -32,8 +34,8 @@ public class UpdateController1 extends HttpServlet {
 			
 			// session에 들어있는 로그인 정보에서 아이디를 꺼냄
 			HttpSession session = request.getSession();
-			MemberInfo loginInfo = (MemberInfo) session.getAttribute("loginUserInfo");
-			String id = loginInfo.getId();
+			MemberInfo loginUserInfo = (MemberInfo) session.getAttribute("loginUserInfo");
+			String id = loginUserInfo.getId();
 			
 			MemberInfo memberInfo = new MemberInfo();
 			memberInfo.setId(id);
