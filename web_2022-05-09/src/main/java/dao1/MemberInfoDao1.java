@@ -210,7 +210,7 @@ public class MemberInfoDao1 {
 		
 	}
 	
-	public void updateMById(MemberInfo newMemberInfo) {
+	public void updateMById(MemberInfo memberInfo) {
 		Database db = new Database();
 		
 		Connection conn = db.getConnection();
@@ -222,12 +222,12 @@ public class MemberInfoDao1 {
 			String sql = "UPDATE member_info SET pw = ?, name = ?, tel = ?, addr = ?, email = ? WHERE id = ?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, newMemberInfo.getPw());
-			pstmt.setString(2, newMemberInfo.getName());
-			pstmt.setString(3, newMemberInfo.getTel());
-			pstmt.setString(4, newMemberInfo.getAddr());
-			pstmt.setString(5, newMemberInfo.getEmail());
-			pstmt.setString(6, newMemberInfo.getId());
+			pstmt.setString(1, memberInfo.getPw());
+			pstmt.setString(2, memberInfo.getName());
+			pstmt.setString(3, memberInfo.getTel());
+			pstmt.setString(4, memberInfo.getAddr());
+			pstmt.setString(5, memberInfo.getEmail());
+			pstmt.setString(6, memberInfo.getId());
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -236,6 +236,10 @@ public class MemberInfoDao1 {
 			db.closePstmt(pstmt);
 			db.closeConn(conn);
 		}
+	}
+	
+	public void update(String email) {
+		
 	}
 	
 //	public boolean deleteMemberInfo(MemberInfo memberInfo) {

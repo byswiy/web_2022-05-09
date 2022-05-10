@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao1.MemberInfoDao1;
 import exception1.BadParameterException1;
 import util1.Validator1;
 import vo1.MemberInfo;
@@ -32,11 +33,20 @@ public class UpdateController1 extends HttpServlet {
 			else if(!validator.addrValidator(addr)) 	throw new BadParameterException1();
 			else if(!validator.emailValidator(email))	throw new BadParameterException1();
 			
-			// session에 들어있는 로그인 정보에서 아이디를 꺼냄
 			HttpSession session = request.getSession();
+			// 세션에 들어있는 로그인 정보에서 아이디르 꺼냄
 			MemberInfo loginUserInfo = (MemberInfo) session.getAttribute("loginUserInfo");
 			String id = loginUserInfo.getId();
 			
+			MemberService1 service = new MemberService1();
+			if(service.isAlreadyTelOrEmail(id, tel, email)) {
+				response.setStatus(HttpServletResponse.SC_CONFLICT);
+				return;
+			}
+			
+			
+			// session에 들어있는 로그인 정보에서 아이디를 꺼냄
+						
 			MemberInfo memberInfo = new MemberInfo();
 			memberInfo.setId(id);
 			memberInfo.setPw(pw);
@@ -45,7 +55,7 @@ public class UpdateController1 extends HttpServlet {
 			memberInfo.setAddr(addr);
 			memberInfo.setEmail(email);
 			
-			MemberService1 service = new MemberService1();
+			
 			service.updateMemberInfo(memberInfo);
 			
 			response.setStatus(HttpServletResponse.SC_OK);
