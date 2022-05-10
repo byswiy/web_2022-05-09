@@ -155,6 +155,9 @@ public class MemberInfoDao1 {
 				String email = rs.getString("email");
 				
 				String t_joinDate = rs.getString("joinDate");
+				t_joinDate = t_joinDate.substring(0, 19);
+				t_joinDate = t_joinDate.replace(' ', 'T');
+				
 				LocalDateTime joinDateTime = LocalDateTime.parse(t_joinDate);
 				
 				memberInfo = new MemberInfo(idx, id, pw, name, tel, addr, email, joinDateTime);
@@ -194,6 +197,9 @@ public class MemberInfoDao1 {
 				String addr = rs.getString("addr");
 				
 				String t_joinDate = rs.getString("joinDate");
+				t_joinDate = t_joinDate.substring(0, 19);
+				t_joinDate = t_joinDate.replace(' ', 'T');
+				
 				LocalDateTime joinDateTime = LocalDateTime.parse(t_joinDate);
 				
 				memberInfo = new MemberInfo(idx, id, pw, name, tel, addr, email, joinDateTime);

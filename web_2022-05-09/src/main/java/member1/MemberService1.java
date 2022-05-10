@@ -24,9 +24,9 @@ public class MemberService1 {
 			return false;
 		} else {
 			if(loginInfo.getPw().equals(memberInfo.getPw())) {
-				return false;
-			} else {
 				return true;
+			} else {
+				return false;
 			}
 		}
 	}
@@ -99,15 +99,15 @@ public class MemberService1 {
 		String email = memberInfo.getEmail();
 		
 		if(isAlreadyId(id)) {
-			return true;
+			
 		}
 		
 		if(isAlreadyTel(tel)) {
-			return true;
+
 		}
 		
 		if(isAlreadyEmail(email)) {
-			return true;
+
 		}
 		return false;
 	}

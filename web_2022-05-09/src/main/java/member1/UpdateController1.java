@@ -43,8 +43,6 @@ public class UpdateController1 extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_CONFLICT);
 				return;
 			}
-			
-			
 			// session에 들어있는 로그인 정보에서 아이디를 꺼냄
 						
 			MemberInfo memberInfo = new MemberInfo();

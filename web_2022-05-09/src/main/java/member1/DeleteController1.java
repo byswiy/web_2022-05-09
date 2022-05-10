@@ -23,7 +23,7 @@ public class DeleteController1 extends HttpServlet {
 		MemberService1 service = new MemberService1();
 		service.deleteMemberInfo(id);
 		
-		// 로그인 상태 정보 삭제
+		// 회원 탈퇴
 		session.invalidate();
 		
 		// 상태코드 200 번환
