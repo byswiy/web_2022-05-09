@@ -17,28 +17,39 @@ import vo1.MemberInfo;
 public class loginController1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			// 아이디와 비밀번호의 파라미터 값을 꺼내온다
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			
+			// 각 파라미터마다의 유효성 검사를 하는 클래스를 가져온다
 			Validator1 validator = new Validator1();
 			
+			// 만약 아이디 유효성 검사가 맞지 않다면 BadParameterException1 예외를 발생시킨다
+			// 마찬가지로 비밀번호 유효성 검사가 맞지 않다면 BadParameterException1 예외를 발생시킨다
 			if(!validator.idValidator(id)) throw new BadParameterException1();
 			else if(!validator.pwValidator(pw))  throw new BadParameterException1();
 			
+			// 로그인할 아이디와 비밀번호를 저장할 MemberInfo 클래스를 가져와서
+			// 아이디와 비밀번호를 직접 저장한다
 			MemberInfo loginInfo = new MemberInfo();
 			loginInfo.setId(id);
 			loginInfo.setPw(pw);
 			
+			// 로그인할 서비스를 가져온다
 			MemberService1 service = new MemberService1();
+			// 만약 로그인 메서드가 잘 동작한다면
 			if(service.isLogin(loginInfo)) {
+				// 세션을 만들어 세션값을 저장하고 200번대 코드를 반환한ㄷ나
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUserInfo", loginInfo);
 				
 				response.setStatus(HttpServletResponse.SC_OK);
 			} else {
+				// 메서드가 제대로 동작하지 못했다면 401코드를 반환한다
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 		} catch(BadParameterException1 e) {
+			// 예외가 발생했다면 409 코드를 반환한다
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 	
