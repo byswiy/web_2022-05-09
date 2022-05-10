@@ -96,6 +96,8 @@ public class MemberInfoDao1 {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
+			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				int idx = rs.getInt("idx");
 				String pw = rs.getString("pw");
@@ -105,9 +107,17 @@ public class MemberInfoDao1 {
 				String email = rs.getString("email");
 				
 				String t_joinDate = rs.getString("joinDate");
+				// parse() 메서드를 사용해서 날짜 정보처럼 생긴 문자열을 날자 정보(LocalDateTime)으로 변환할 수 있는데
+				// 날짜 정보처럼 생긴 문자열은 yyyy-MM-ddTHH:mm:ss 와 같은 형식이어야함
+				
+				// t_joinDate에 들어있는 밀리초를 떼기 -> 1000을 냐눠준다?
+				t_joinDate = t_joinDate.substring(0,19);
+				
 				LocalDateTime joinDateTime = LocalDateTime.parse(t_joinDate);
 				
 				memberInfo = new MemberInfo(idx, id, pw, name, tel, addr, email, joinDateTime);
+				
+				System.out.println(t_joinDate);
 			}
 			
 		} catch (SQLException e) {

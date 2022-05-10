@@ -29,7 +29,7 @@ public class MemberService1 {
 //	}
 	
 	// 아이디가 사용 중인지 여부를 확인하는 메서드
-	public boolean isAlreadyId(String id) {
+	private boolean isAlreadyId(String id) {
 		MemberInfoDao1 dao = new MemberInfoDao1();
 		
 		MemberInfo memberInfo = dao.selectById(id);
@@ -41,8 +41,8 @@ public class MemberService1 {
 		}
 	}
 	
-	// 연
-	public boolean isAlreadyTel(String tel) {
+	// 연락처가 사용 중인지 여부를 확인하는 메서드
+	private boolean isAlreadyTel(String tel) {
 		MemberInfoDao1 dao = new MemberInfoDao1();
 		
 		MemberInfo memberInfo = dao.selectByTel(tel);
@@ -54,8 +54,8 @@ public class MemberService1 {
 		}
 	}
 	
-	// 연
-	public boolean isAlreadyEmail(String email) {
+	// 이메일이 사용 중인지 여부를 확인하는 메서드
+	private boolean isAlreadyEmail(String email) {
 		MemberInfoDao1 dao = new MemberInfoDao1();
 
 		MemberInfo memberInfo = dao.selectByEmail(email);
@@ -66,7 +66,8 @@ public class MemberService1 {
 			return true;
 		}
 	}
-		
+	
+	// 아이디, 연락처, 이메일 여부를 하나로 묶은 메서드
 	public boolean isAlreadyIdOrTelOrEmail(MemberInfo memberInfo) {
 		String id = memberInfo.getId();
 		String tel = memberInfo.getTel();

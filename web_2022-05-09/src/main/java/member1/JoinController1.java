@@ -63,8 +63,6 @@ public class JoinController1 extends HttpServlet {
 //			status = service.join(memberInfo);
 //		}
 		
-		
-		
 		response.setStatus(status);
 		
 		} catch(BadParameterException1 e) {
