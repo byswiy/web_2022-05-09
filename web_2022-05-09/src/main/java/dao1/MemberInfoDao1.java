@@ -216,8 +216,6 @@ public class MemberInfoDao1 {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		
-		boolean result = false;
-		
 		try {
 			String sql = "UPDATE member_info SET pw = ?, name = ?, tel = ?, addr = ?, email = ? WHERE id = ?";
 
@@ -238,33 +236,24 @@ public class MemberInfoDao1 {
 		}
 	}
 	
-	public void update(String email) {
+	public void deleteMemberInfoById(String id) {
+		Database db = new Database();
 		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM member_info WHERE id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
 	}
-	
-//	public boolean deleteMemberInfo(MemberInfo memberInfo) {
-//		Database db = new Database();
-//		
-//		Connection conn = db.getConnection();
-//		PreparedStatement pstmt = null;
-//		
-//		boolean result = false;
-//		
-//		try {
-//			String sql = "DELETE FROM member_info WHERE id = ?";
-//			
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, memberInfo.getId());
-//			
-//			int count = pstmt.executeUpdate();
-//			
-//			result = count == 1;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			db.closePstmt(pstmt);
-//			db.closeConn(conn);
-//		}
-//		return result;
-//	}
 }

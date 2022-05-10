@@ -37,6 +37,11 @@ public class MemberService1 {
 		dao.updateMById(memberInfo);
 	}
 	
+	public void deleteMemberInfo(String id) {
+		MemberInfoDao1 dao = new MemberInfoDao1();
+		dao.deleteMemberInfoById(id);
+	}
+	
 //	public int selectService(MemberInfo memberInfo) {
 //		MemberInfoDao1 dao = new MemberInfoDao1();
 //		boolean exist = dao.select(memberInfo);
