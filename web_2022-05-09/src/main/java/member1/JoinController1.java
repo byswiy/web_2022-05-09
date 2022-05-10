@@ -48,17 +48,11 @@ public class JoinController1 extends HttpServlet {
 		MemberInfo memberInfo = new MemberInfo(id, pw, name, tel, addr, email, joinDate);
 		
 		MemberService1 service = new MemberService1();
-		if(service.isAlreadyId(id)) {
+		
+		if(service.isAlreadyIdOrTelOrEmail(memberInfo)) {
 			response.setStatus(HttpServletResponse.SC_CONFLICT);
 		}
 		
-		if(service.isAlreadyTel(tel)) {
-			response.setStatus(HttpServletResponse.SC_CONFLICT);
-		}
-		
-		if(service.isAlreadyEmail(email)) {
-			response.setStatus(HttpServletResponse.SC_CONFLICT);
-		}
 		
 		int status = service.join(memberInfo);
 //		MemberService1 service = new MemberService1();

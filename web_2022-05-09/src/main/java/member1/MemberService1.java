@@ -1,5 +1,7 @@
 package member1;
 
+import javax.servlet.http.HttpServletResponse;
+
 import dao1.MemberInfoDao1;
 import vo1.MemberInfo;
 
@@ -53,15 +55,34 @@ public class MemberService1 {
 	}
 	
 	// 연
-		public boolean isAlreadyEmail(String email) {
-			MemberInfoDao1 dao = new MemberInfoDao1();
-			
-			MemberInfo memberInfo = dao.selectByEmail(email);
-			
-			if(memberInfo == null) {
-				return false;
-			} else {
-				return true;
-			}
+	public boolean isAlreadyEmail(String email) {
+		MemberInfoDao1 dao = new MemberInfoDao1();
+
+		MemberInfo memberInfo = dao.selectByEmail(email);
+
+		if (memberInfo == null) {
+			return false;
+		} else {
+			return true;
 		}
+	}
+		
+	public boolean isAlreadyIdOrTelOrEmail(MemberInfo memberInfo) {
+		String id = memberInfo.getId();
+		String tel = memberInfo.getTel();
+		String email = memberInfo.getEmail();
+		
+		if(isAlreadyId(id)) {
+			return true;
+		}
+		
+		if(isAlreadyTel(tel)) {
+			return true;
+		}
+		
+		if(isAlreadyEmail(email)) {
+			return true;
+		}
+		return false;
+	}
 }

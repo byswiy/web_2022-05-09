@@ -41,45 +41,45 @@ public class MemberInfoDao1 {
 		}
 	}
 	
-//	public boolean select(MemberInfo memberInfo) {
-//		Database db = new Database();
-//		
-//		Connection conn = db.getConnection();
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		
-//		boolean exist = false;
-//		
-//		try {
-//			String sql = "SELECT * FROM member_info WHERE id = ? AND tel = ? AND email = ?";
-//			
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, memberInfo.getId());
-//			pstmt.setString(2, memberInfo.getTel());
-//			pstmt.setString(3, memberInfo.getEmail());
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				String id = rs.getString("id");
-//				String tel = rs.getString("tel");
-//				String email = rs.getString("email");
-//				
-//				memberInfo = new MemberInfo(id, tel, email);
-//				
-//				if(memberInfo != null) {
-//					exist = true;
-//				} 
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			db.closeResultSet(rs);
-//			db.closePstmt(pstmt);
-//			db.closeConn(conn);
-//		}
-//		return exist;
-//	}
+	public boolean select(MemberInfo memberInfo) {
+		Database db = new Database();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		boolean exist = false;
+		
+		try {
+			String sql = "SELECT * FROM member_info WHERE id = ? AND tel = ? AND email = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberInfo.getId());
+			pstmt.setString(2, memberInfo.getTel());
+			pstmt.setString(3, memberInfo.getEmail());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String id = rs.getString("id");
+				String tel = rs.getString("tel");
+				String email = rs.getString("email");
+				
+				memberInfo = new MemberInfo(id, tel, email);
+				
+				if(memberInfo != null) {
+					exist = true;
+				} 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.closeResultSet(rs);
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
+		return exist;
+	}
 	
 	public MemberInfo selectById(String id) {
 		Database db = new Database();
