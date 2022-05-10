@@ -17,6 +17,8 @@ import vo1.MemberInfo;
 public class JoinController1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	try {
+		request.setCharacterEncoding("UTF-8");
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String pwChk = request.getParameter("pwChk");
@@ -51,6 +53,7 @@ public class JoinController1 extends HttpServlet {
 		
 		if(service.isAlreadyIdOrTelOrEmail(memberInfo)) {
 			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			return;
 		}
 		
 		
