@@ -46,7 +46,7 @@ public class loginController1 extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_OK);
 			} else {
 				// 메서드가 제대로 동작하지 못했다면(로그인에 실패했다면) 400코드를 반환한다 -> 전달 받은 값이 규칙에 맞지 않을 때
-				response.setStatus(HttpServletResponse.SC_CONFLICT);
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 		} catch(BadParameterException1 e) {
 			// 예외가 발생했다면 409 코드를 반환한다 -> 아이디 또는 비밀번호가 틀렸을 때

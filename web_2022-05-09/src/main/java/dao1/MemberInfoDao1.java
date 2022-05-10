@@ -119,8 +119,6 @@ public class MemberInfoDao1 {
 				LocalDateTime joinDateTime = LocalDateTime.parse(t_joinDate);
 				
 				memberInfo = new MemberInfo(idx, id, pw, name, tel, addr, email, joinDateTime);
-				
-				System.out.println(t_joinDate);
 			}
 			
 		} catch (SQLException e) {
