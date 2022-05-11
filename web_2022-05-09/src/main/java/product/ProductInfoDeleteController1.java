@@ -22,9 +22,6 @@ public class ProductInfoDeleteController1 extends HttpServlet {
 		int productId = Integer.parseInt(request.getParameter("productId")); 
 		
 		// 첨뷰파일이 있는 공지사항을 삭제하는 과정을 다시 떠올려보기
-		
-		
-		
 		ProductInfoDao1 dao = new ProductInfoDao1();
 		// 이미지를 가지고 있는 상품 정보는 이미지를 삭제해준다		
 		ProductInfo productInfo = dao.selectByIdx(productId);

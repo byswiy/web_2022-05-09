@@ -11,9 +11,15 @@ public class ProductInfo {
 	private int price;
 	private String img;
 	private LocalDateTime insertDate;
+	private String list;
 	
-	public ProductInfo() {
-		
+	public ProductInfo(int idx, String name, String category, int stock, int price, String img) {
+		this.idx = idx;
+		this.name = name;
+		this.category = category;
+		this.stock = stock;
+		this.price = price;
+		this.img = img;
 	}
 	
 	public ProductInfo(String name, String category, int stock, int price, String img, LocalDateTime insertDate) {
@@ -25,12 +31,26 @@ public class ProductInfo {
 		this.insertDate = insertDate;
 	}
 	
-	public int getidx() {
+	public ProductInfo() {
+		
+	}
+	
+	public int getIdx() {
 		return idx;
 	}
-	public void setidx(int idx) {
+
+	public void setIdx(int idx) {
 		this.idx = idx;
 	}
+
+	public String getList() {
+		return list;
+	}
+
+	public void setList(String list) {
+		this.list = list;
+	}
+
 	public LocalDateTime getInsertDate() {
 		return insertDate;
 	}

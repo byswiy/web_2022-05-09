@@ -61,7 +61,7 @@ public class ProductInfoDao1 {
 			pstmt.setInt(3, productInfo.getStock());
 			pstmt.setInt(4, productInfo.getPrice());
 			pstmt.setString(5, productInfo.getImg());
-			pstmt.setInt(6, productInfo.getidx());
+			pstmt.setInt(6, productInfo.getIdx());
 			
 //			if(productInfo.getImg() == null) {
 //				pstmt.setInt(6, productInfo.getidx());
@@ -79,7 +79,7 @@ public class ProductInfoDao1 {
 		}
 	}
 	
-	public ProductInfo selectByIdx(int productId) {
+	public ProductInfo selectByIdx(int idx) {
 		Database db = new Database();
 		
 		Connection conn = db.getConnection();
@@ -92,11 +92,13 @@ public class ProductInfoDao1 {
 			 String sql = "SELET * FROM product_info WHERE idx = ?";
 			 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,productId);
+			pstmt.setInt(1,idx);
 			
-			pstmt.executeQuery();
-			
-			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				productInfo = new ProductInfo();
+				productInfo.setIdx(idx);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -104,8 +106,7 @@ public class ProductInfoDao1 {
 			db.closePstmt(pstmt);
 			db.closeConn(conn);
 		}
-		 
-		 return;
+		 return productInfo;
 	}
 	
 	public void deleteById(int idx) {
