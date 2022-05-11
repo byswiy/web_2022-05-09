@@ -38,6 +38,47 @@ public class ProductInfoDao1 {
 		return false;
 	}
 	
+	public void updateProductInfo(ProductInfo productInfo) {
+		Database db = new Database();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+//			String sql;
+			
+			String sql = "UPDATE product_info SET name = ?, category = ?, stock = ?, price = ?, img = ? WHERE idx = ?";
+			
+//			if(productInfo.getImg() == null) {
+//				sql = "UPDATE product_info SET name = ?, category = ?, stock = ?, price = ? WHERE idx = ?";
+//			} else {
+//				sql = "UPDATE product_info SET name = ?, category = ?, stock = ?, price = ?, img = ? WHERE idx = ?";
+//			}
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productInfo.getName());
+			pstmt.setString(2, productInfo.getCategory());
+			pstmt.setInt(3, productInfo.getStock());
+			pstmt.setInt(4, productInfo.getPrice());
+			pstmt.setString(5, productInfo.getImg());
+			pstmt.setInt(6, productInfo.getidx());
+			
+//			if(productInfo.getImg() == null) {
+//				pstmt.setInt(6, productInfo.getidx());
+//			} else {
+//				pstmt.setString(5, productInfo.getImg());
+//				pstmt.setInt(6, productInfo.getidx());
+//			}
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
+	}
+	
 	public void updateProduct(int productId) {
 		Database db = new Database();
 		

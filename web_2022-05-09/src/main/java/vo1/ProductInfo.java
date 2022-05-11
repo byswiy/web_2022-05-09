@@ -4,7 +4,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 
 public class ProductInfo {
-	private int productId;
+	private int idx;
 	private String name;
 	private String category;
 	private int stock;
@@ -12,6 +12,9 @@ public class ProductInfo {
 	private String img;
 	private LocalDateTime insertDate;
 	
+	public ProductInfo() {
+		
+	}
 	
 	public ProductInfo(String name, String category, int stock, int price, String img, LocalDateTime insertDate) {
 		this.name = name;
@@ -22,11 +25,11 @@ public class ProductInfo {
 		this.insertDate = insertDate;
 	}
 	
-	public int getProductId() {
-		return productId;
+	public int getidx() {
+		return idx;
 	}
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setidx(int idx) {
+		this.idx = idx;
 	}
 	public LocalDateTime getInsertDate() {
 		return insertDate;

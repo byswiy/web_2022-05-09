@@ -17,8 +17,8 @@ import exception1.BadParameterException1;
 import util1.ProdValidator1;
 import vo1.ProductInfo;
 
-@WebServlet("/product/add")
-public class productAdd extends HttpServlet {
+@WebServlet("/product1/add1")
+public class productAddController1 extends HttpServlet {
 	private static final int MAXIUM_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getRealPath("images/product");
@@ -30,14 +30,15 @@ public class productAdd extends HttpServlet {
 		String name = mr.getParameter("name");
 		String category = mr.getParameter("category");
 		
+		int stock = Integer.parseInt(mr.getParameter("stock")); // stock을 전달하지 않으면 다음 코드는 실행되지 못하고 null을 반환한다
+		int price = Integer.parseInt(mr.getParameter("price"));
+		
 		if(mr.getParameter("stock") == null || mr.getParameter("price") == null) {
 			throw new BadParameterException1();
 //			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 //			return;
 		}
 		
-		int stock = Integer.parseInt(mr.getParameter("stock")); // stock을 전달하지 않으면 다음 코드는 실행되지 못하고 null을 반환한다
-		int price = Integer.parseInt(mr.getParameter("price"));
 		// img 파라미터에 담긴 파일을 저장했을 대 저장된 실제 파일의 이름
 		String img = mr.getFilesystemName("img");
 		LocalDateTime insertDate = LocalDateTime.now();
