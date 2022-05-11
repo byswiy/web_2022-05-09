@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao1.ProductInfoDao1;
+import dao1.ProductListDao1;
 
 @WebServlet("/ProductInfoController1")
 public class ProductListController1 extends HttpServlet {
