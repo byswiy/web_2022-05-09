@@ -56,7 +56,7 @@ public class ProductInfoUpdateController1 extends HttpServlet {
 		}
 		
 		// 전달 받은 값 검증
-//		ProdValidator1 validator = new ProdValidator1();
+		ProdValidator1 validator = new ProdValidator1();
 		
 		// 전달 받은 값을 하나의 정보로 합침
 		ProductInfo productInfo = new ProductInfo();

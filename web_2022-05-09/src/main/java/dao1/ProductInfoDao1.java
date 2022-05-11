@@ -79,20 +79,24 @@ public class ProductInfoDao1 {
 		}
 	}
 	
-	public void updateProduct(int productId) {
+	public ProductInfo selectByIdx(int productId) {
 		Database db = new Database();
 		
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		ProductInfo productInfo = null;
+		
 		 try {
-			 String sql = "SELET * FROM product_info WHERE productId = ?";
+			 String sql = "SELET * FROM product_info WHERE idx = ?";
 			 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productId);
+			pstmt.setInt(1,productId);
 			
 			pstmt.executeQuery();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -100,19 +104,21 @@ public class ProductInfoDao1 {
 			db.closePstmt(pstmt);
 			db.closeConn(conn);
 		}
+		 
+		 return;
 	}
 	
-	public void deleteMemberInfoById(int productId) {
+	public void deleteById(int idx) {
 		Database db = new Database();
 		
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "DELETE FROM product_info WHERE productId = ?";
+			String sql = "DELETE FROM product_info WHERE idx = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productId);
+			pstmt.setInt(1, idx);
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
