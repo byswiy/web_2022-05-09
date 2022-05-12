@@ -30,12 +30,12 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">홈</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">브랜드 소개</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">회원가입</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/shopping/login/login.jsp">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/shopping/join/join.jsp">회원가입</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 상품</a></li>
+                                <li><a class="dropdown-item" href="/shopping/shop/product_list.jsp">모든 상품</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#!">인기 상품</a></li>
                                 <li><a class="dropdown-item" href="#!">새로운 상품</a></li>
@@ -72,8 +72,8 @@
 			        <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
 			        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
 			        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-			          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">로그인</button>
-			          <button type="button" class="btn btn-outline-secondary btn-lg px-4">회원가입</button>
+			          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" id="login_btn">로그인</button>
+			          <button type="button" class="btn btn-outline-secondary btn-lg px-4" id="join_btn">회원가입</button>
 			        </div>
 			      </div>
 			    </div>
