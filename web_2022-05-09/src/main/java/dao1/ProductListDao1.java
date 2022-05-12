@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util1.Database;
-import vo.NoticeInfo;
 import vo1.ProductInfo;
 
 public class ProductListDao1 {
@@ -23,10 +22,10 @@ public class ProductListDao1 {
 		List<ProductInfo> noticeInfoList = new ArrayList<>();
 
 		try {
-			String sql = "SELECT * FROM product_info ORDER BY id DESC LIMIT ?, 5 ";
+			String sql = "SELECT * FROM product_info ORDER BY id DESC LIMIT ?, 10";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,	(pageNumber - 1) * 5);
+			pstmt.setInt(1,	(pageNumber - 1));
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
