@@ -114,4 +114,28 @@ public class ProductListDao1 {
 		}
 		return noticeInfo;
 	}
+	
+	public void decreaseStockById(int productId) {
+		Database db = new Database();
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE product_info SET stock = stock - 1 WHERE idx = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productId);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
+	
+	}
 }
