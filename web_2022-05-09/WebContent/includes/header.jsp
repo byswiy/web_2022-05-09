@@ -5,10 +5,10 @@
 <%-- active의 파라미터의 값이 product_list라면 서로 다른 텍스트를 출력한다 --%>
 
 <c:set var="header_title" value="홈" />
-<c:if test="${param.active eq 'product_list}">
+<c:if test="${param.active eq 'product_list'}">
 	<c:set var="header_title" value="모든 상품" />
 </c:if>
-<!DOCTYPE html>
+
 <header class="bg-dark py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
