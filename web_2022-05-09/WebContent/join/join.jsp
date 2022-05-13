@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../includes/URLs.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
 <body class="text-center">
     
   <main class="form-signin">
-    <form>
+    <form action="${JOIN_SERVLET }" method="POST">
       <h1 class="h3 mb-3 fw-normal">
     	<i class="bi bi-hand-index-thumb" id="rightHandLogo"></i>
         <i class="bi bi-hand-index-thumb" id="leftHandLogo"></i>
@@ -23,20 +24,32 @@
       </h1>
   
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">아이디(이메일)</label>
+        <input type="email" class="form-control" id="floatingInput" placeholder="Id" name="id">
+        <label for="floatingInput">아이디</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
         <label for="floatingPassword">비밀번호</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pwChk">
         <label for="floatingPassword">비밀번호 확인</label>
       </div>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingName" placeholder="Name">
+        <input type="text" class="form-control" id="floatingName" placeholder="Name" name="name">
         <label for="floatingName">이름</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingTel" placeholder="Tel" name="tel">
+        <label for="floatingTel">연락처</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingAddr" placeholder="Addr" name="addr">
+        <label for="floatingAddr">주소</label>
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingEmail" placeholder="Email" name="email">
+        <label for="floatingEmail">이메일</label>
       </div>
       
       <div class="form-floating">
