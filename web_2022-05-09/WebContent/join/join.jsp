@@ -95,10 +95,32 @@
         </ul>
       </div>
 
-      <button class="w-100 btn btn-lg btn-secondary" type="button">회원가입</button>
+      <button class="w-100 btn btn-lg btn-secondary" type="submit">회원가입</button>
     </form>
   </main>
   
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script>
+  	$("intput[id=term1]").on("click", function() {
+  		
+  	})
+  	
+  	// 아무것도 입력하지 않고 회원가입 버튼을 누르거나
+  	// 잘못된 값을 입력하고 회원 가입 버튼을 누를 수도 있으므로
+  	// 회원 가입 버튼을 눌렀을 때 자바스트립트에서 올바를 값을 입력했는지 아닌지
+  	//									(입력값 검증)
+  	// 를 체크해서 올바른 값을 입력했을 경우에만 회원 가입 서블릿으로 데이터를 전달해줘야함
+  	
+  	// a 태그나 submit 버튼의 경우에는 기본적으로 클릭 했을 때 
+  	// 행동하는 기본 이벤트가 부여되어 있다
+  	// a 태그 -> 텍스트나 img을 클릭하면 해당하는 URL로 페이지를 이동한다
+  	// submit 태그 -> submit을 누르면 각 데이터들이 name이라는 속성의 값에 담겨서 form 태그의 action 속성에 있는 경로로 데이터를 보낸다
+  	
+  	// 회원 가입 버튼을 눌렀을 때 submit 버튼에 부여된 기본 클리 이벤트를 무시하고
+  	// 사용자가 입력한 값을 검증한 뒤에
+  	// 사용자가 모두 올마른 값을 입력했을 때만
+  	// submit 버튼에 부여도니 기본 클릭 이벤트가 동작하도록 한다
+  </script>
   </body>
 </html>
 
