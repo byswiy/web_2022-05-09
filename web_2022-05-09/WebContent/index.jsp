@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +19,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">
+                <a class="navbar-brand" href="/shopping/index.jsp">
                		<i class="bi bi-hand-index-thumb" id="rightHandLogo"></i>
                		<i class="bi bi-hand-index-thumb" id="leftHandLogo"></i>
                 	두두몰
@@ -28,7 +27,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">홈</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/shopping/index.jsp">홈</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">브랜드 소개</a></li>
                         <li class="nav-item"><a class="nav-link" href="/shopping/login/login.jsp">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="/shopping/join/join.jsp">회원가입</a></li>
@@ -86,6 +85,15 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="/shopping/js/jquery-3.6.0.min.js"></script>
+        <script>
+       		$("#login_btn").on("click", function() {
+    			location.href = "/shopping/login/login.jsp";
+    		})
+    	
+    		$("#join_btn").on("click", function() {
+    			location.href = "/shopping/join/join.jsp";
+    		})
+        </script>
     </body>
 </html>

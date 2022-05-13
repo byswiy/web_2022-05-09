@@ -37,10 +37,15 @@
         </label>
       </div>
       <button class="w-100 btn btn-lg btn-primary" id="login-btn" type="submit">로그인</button>
-      <button class="w-100 btn btn-lg btn-secondary" type="button">회원가입</button>
+      <button class="w-100 btn btn-lg btn-secondary" type="button" id="join_button">회원가입</button>
     </form>
   </main>
-  
+  	<script src="/shopping/js/jquery-3.6.0.min.js"></script>
+  	<script>
+  		$("#join_button").on("click", function() {
+			location.href = "/shopping/join/join.jsp";
+		})
+  	</script>
   </body>
 </html>
 

@@ -14,7 +14,7 @@ import dao1.ProductListDao1;
 import vo1.BuyInfo;
 import vo1.ProductInfo;
 
-@WebServlet("/buy")
+@WebServlet("/buy1")
 public class BuyController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("userId") == null || request.getParameter("productId") == null) {
