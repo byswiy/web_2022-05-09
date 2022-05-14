@@ -15,19 +15,18 @@ import vo1.BuyInfo;
 import vo1.ProductInfo;
 
 @WebServlet("/buy1")
-public class BuyController extends HttpServlet {
+public class BuyController1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		if(request.getParameter("userId") == null || request.getParameter("productId") == null) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
 		
-		request.setCharacterEncoding("UTF-8");
-		
 		String paymentMethod = request.getParameter("paymentMethod");
-		int userId = Integer.parseInt(request.getParameter("useId"));
+		int userId = Integer.parseInt(request.getParameter("userId"));
 		int productId = Integer.parseInt(request.getParameter("productId"));
-		int stock = Integer.parseInt(request.getParameter("stock"));
 		
 		ProductListDao1 productInfoDao = new ProductListDao1();
 		

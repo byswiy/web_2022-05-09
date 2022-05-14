@@ -13,26 +13,26 @@ public class ProductInfo {
 	private LocalDateTime insertDate;
 	private String list;
 	
-	public ProductInfo(int idx, String name, String category, int stock, int price, String img) {
+	public ProductInfo() {
+		
+	}
+	
+	public ProductInfo(int idx,String name, String category, int stock, int price, String img) {
+		this(idx, name, category, stock, price, img, null);
+	}
+	
+	public ProductInfo(String name, String category, int stock, int price, String img, LocalDateTime insertDate) {
+		this(0, name, category, stock, price, img, insertDate);
+	}
+	
+	public ProductInfo(int idx, String name, String category, int stock, int price, String img, LocalDateTime insertDate) {
 		this.idx = idx;
 		this.name = name;
 		this.category = category;
 		this.stock = stock;
 		this.price = price;
 		this.img = img;
-	}
-	
-	public ProductInfo(String name, String category, int stock, int price, String img, LocalDateTime insertDate) {
-		this.name = name;
-		this.category = category;
-		this.stock = stock;
-		this.price = price;
-		this.img = img;
 		this.insertDate = insertDate;
-	}
-	
-	public ProductInfo() {
-		
 	}
 	
 	public int getIdx() {

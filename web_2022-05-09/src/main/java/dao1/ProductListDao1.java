@@ -4,76 +4,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import util1.Database;
 import vo1.ProductInfo;
 
-public class ProductListDao1 {
-	
-	public List<ProductInfo> getAmount(int pageNumber) {
-		Database db = new Database();
-
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		List<ProductInfo> noticeInfoList = new ArrayList<>();
-
-		try {
-			String sql = "SELECT * FROM product_info ORDER BY id DESC LIMIT ?, 10";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,	(pageNumber - 1));
-
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String title = rs.getString("title");
-				String contents = rs.getString("contents");
-				
-				ProductInfo nthNotice = new ProductInfo();
-				
-				noticeInfoList.add(nthNotice);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			db.closeResultSet(rs);
-			db.closePstmt(pstmt);
-			db.closeConn(conn);
-		}
-		return noticeInfoList;
-	}
-	
-	public int getAmount1() {
+public class ProductListDao1 {	
+	public int getCount() {
 		Database db = new Database();
 		
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		int amount = 0;
+		int count = 0;
 		
-		String sql = "SELECT COUNT(*) AS amount FROM product_info";
 		try {
+			String sql = "SELECT COUNT(*) AS amount FROM product_info";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
-			// 공지사항의 갯수의 return 되는 결과가 무조건 있기 때문에
 			rs.next();
 			
-			amount = rs.getInt("amount");
+			count = rs.getInt("amount");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.closeResultSet(rs);
 			db.closePstmt(pstmt);
 			db.closeConn(conn);
 		}
-		return amount;
+		return count;
 	}
 	
 	public ProductInfo selectProductInfoById(int productId) {
@@ -137,5 +101,55 @@ public class ProductListDao1 {
 			db.closeConn(conn);
 		}
 	
+	}
+	
+	public List<ProductInfo> selectAll(int pageNumber) {
+		Database db = new Database();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<ProductInfo> productInfoList = new ArrayList<>();
+		
+		try {
+			String sql = "SELECT * FROM product_info LIMIT ?, 10";
+			
+			// 10이 의미하는 것은 한 페이지에 보여줘야할 상품의 수 1번 페이지라면 1-1 = 0 0*10 => 0
+			int startIndex = (pageNumber - 1) * 10;
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startIndex);
+			
+			rs = pstmt.executeQuery();
+			
+			// 결과가 있을 수도 있고 없을 수도 있기 때문에
+			// while을 사용해서 결과가 있을 때까지 동작하도록 한다
+			while(rs.next()) {
+				int nthIdx = rs.getInt("idx");
+				String name = rs.getString("name");
+				String category = rs.getString("category");
+				int stock = rs.getInt("stock");
+				int price = rs.getInt("price");
+				String img = rs.getString("img");
+				String t_insertDate = rs.getString("insertDate");
+				t_insertDate = t_insertDate.substring(0, t_insertDate.indexOf('.'));
+				t_insertDate = t_insertDate.replace(' ', 'T');
+				LocalDateTime insertDate = LocalDateTime.parse(t_insertDate);
+				
+				ProductInfo nthProductInfo = new ProductInfo(nthIdx, name, category, stock, price, img, insertDate);
+				
+				productInfoList.add(nthProductInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.closeResultSet(rs);
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
+		
+		return productInfoList;
 	}
 }

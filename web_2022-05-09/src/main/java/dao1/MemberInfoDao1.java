@@ -146,6 +146,8 @@ public class MemberInfoDao1 {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, tel);
 			
+			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				int idx = rs.getInt("idx");
 				String id = rs.getString("id");
@@ -187,6 +189,8 @@ public class MemberInfoDao1 {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				int idx = rs.getInt("idx");

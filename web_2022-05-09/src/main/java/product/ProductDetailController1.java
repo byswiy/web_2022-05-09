@@ -16,7 +16,7 @@ import vo1.ProductInfo;
 public class ProductDetailController1 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			if(request.getParameter("prouductid") == null) {
+			if(request.getParameter("productId") == null) {
 				throw new BadParameterException1();
 			}
 			
