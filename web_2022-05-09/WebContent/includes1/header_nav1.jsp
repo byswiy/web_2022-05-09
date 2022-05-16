@@ -16,17 +16,21 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/shopping/index1.jsp?active=home">홈</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">브랜드 소개</a></li>
                         
-                        <%-- 로그인을 한 상태에서 보여지는 메뉴 --%>
+                       <%-- 로그인을 하지 않은 상태에서 보여지는 메뉴 --%>
                        <c:if test="${loginUserInfo eq null}">
                        		<li class="nav-item"><a class="nav-link" href="/shopping/login1/login1.jsp">로그인</a></li>
                        		<li class="nav-item"><a class="nav-link" href="/shopping/join1/join1.jsp">회원가입</a></li>
                        </c:if>
                        
-                       <%-- 로그인을 하지 않은 상태에서 보여지는 메뉴 --%>
+                        <%-- 로그인을 한 상태에서 보여지는 메뉴 --%>
                         <c:if test="${loginUserInfo ne null }">
                         	<li class="nav-item"><a class="nav-link" href="/shopping/login1/login1.jsp">회원정보 수정</a></li>
                        	 	<li class="nav-item"><a class="nav-link" href="/shopping/join1/join1.jsp">회원 탈퇴</a></li>
                        	 	<li class="nav-item"><a class="nav-link" href="/shopping/login1/login1.jsp">로그아웃</a></li>
+                       	 	
+                       	 	<c:if test="${loginUserInfo.id eq 'Admin1}">
+                       	 		<li class="nav-item"><a class="nav-link" href="/shopping/manager1/product_form1.jsp?active=product_add">상품 추가</a></li>
+                       	 	</c:if>
                         </c:if>
                         
                         <li class="nav-item dropdown">
