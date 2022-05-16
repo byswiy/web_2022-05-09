@@ -20,9 +20,9 @@
     </head>
     <body>
         <!-- Navigation-->
-        <%@ include file="../includes/header_nav.jsp" %>
+        <%@ include file="../includes1/header_nav1.jsp" %>
         <!-- Header-->
-         <%@ include file="../includes/header.jsp" %>
+         <%@ include file="../includes1/header1.jsp" %>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">

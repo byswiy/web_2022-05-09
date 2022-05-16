@@ -18,9 +18,9 @@
     </head>
     <body>
     	<!-- Navigation-->
-        <%@ include file="../includes/header_nav.jsp" %>
+        <%@ include file="../includes1/header_nav1.jsp" %>
         <!-- Header-->
-        <%@ include file="../includes/header.jsp" %>
+        <%@ include file="../includes1/header1.jsp" %>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -46,14 +46,14 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/shopping/js/jquery-3.6.0.min.js"></script>
+        <script src="shopping/js/jquery-3.6.0.min.js"></script>
         <script>
        		$("#login_btn").on("click", function() {
-    			location.href = "/shopping/login/login.jsp";
+    			location.href = "/shopping/login1/login1.jsp";
     		})
     	
     		$("#join_btn").on("click", function() {
-    			location.href = "/shopping/join/join.jsp";
+    			location.href = "/shopping/join1/join1.jsp";
     		})
         </script>
     </body>

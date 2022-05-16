@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../includes/URLs.jsp" %>
+<%@ include file="../includes1/URLs1.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@
       </h1>
   
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="Id" name="id">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Id" name="id">
         <label for="floatingInput">아이디</label>
       </div>
       <div class="form-floating">
@@ -32,8 +32,8 @@
         <label for="floatingPassword">비밀번호</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pwChk">
-        <label for="floatingPassword">비밀번호 확인</label>
+        <input type="password" class="form-control" id="floatingPasswordCheck" placeholder="Password" name="pwChk">
+        <label for="floatingPasswordCheck">비밀번호 확인</label>
       </div>
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingName" placeholder="Name" name="name">
@@ -95,12 +95,14 @@
         </ul>
       </div>
 
-      <button class="w-100 btn btn-lg btn-secondary" type="submit">회원가입</button>
+      <button class="w-100 btn btn-lg btn-secondary" type="submit" id="submit_btn">회원가입</button>
     </form>
   </main>
   
   <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/scriptsURL1.js"></script>
   <script>
+  	// 모든 약관 동의에 체크 됐을 경우 회원가입 가능
   	$("intput[id=term1]").on("click", function() {
   		
   	})
@@ -120,6 +122,80 @@
   	// 사용자가 입력한 값을 검증한 뒤에
   	// 사용자가 모두 올마른 값을 입력했을 때만
   	// submit 버튼에 부여도니 기본 클릭 이벤트가 동작하도록 한다
+  	
+  	$("#submit_btn").on("click", function(event) {
+  		// submit 버튼에 부여된 기본 클릭 이벤트를 무시하도록
+  		event.preventDefault();
+  		
+  		// 사용자가 입력한 값을 검증
+  		// (회원가입 서블릿에서 정규표현식으로 검증했듯이 자바스크립트의 정규표현식을 사용해서 검증)
+  		// 1. id 검증
+  		let $id = $("#floatingInput");
+  		if($id.val() == "") {
+  			// 아이디를 입력하지 않았다면
+  			alert("아이디를 입력하세요");
+  			return false;
+  		}
+  		// 2. pw 검증
+  		let $pw = $("#floatingPassword");
+  		// 3. pwChk 검증
+  		let $pwChk = $("#floatingPasswordCheck");
+  		// 4. name 검증
+  		let $name = $("#floatingName");
+  		// 5. tel 검증
+  		let $tel = $("#floatingTel");
+  		// 6. addr 검증
+  		let $addr = $("#floatingAddr");
+  		// 7. email 검증
+  		let $email = $("#floatingEmail");
+  		
+  		let id = $id.val();
+  		let pw = $pw.val();
+  		let pwChk = $pwChk.val();
+  		let name = $name.val();
+  		let tel = $tel.val();
+  		let addr = $addr.val();
+  		let email = $email.val();
+  		
+  		console.log("id -> " + id);
+  		console.log("pw -> " + pw);
+  		console.log("pwChk -> " + pwChk);
+  		console.log("name -> " + name);
+  		console.log("tel -> " + tel);
+  		console.log("addr -> " + addr);
+  		console.log("email -> " + email);
+  		
+  		// 사용자가 값을 모두 정상적으로 입력했다면
+  		// form 태그를 활용해서 submit을 하면 페이지 자체가 서블릿으로 이동하므로
+  		// ajax를 사용해서 현재 페이지에서 회원 가입 서블릿을 요청해서 회원 가입 하고
+  		// 회원 가입 서블릿의 결과를 받아서 로그인 페이지로 이동하거나 안내 문구를 출력
+		$("form").submit();
+  		
+  		$.ajax({
+  			url: "/shopping/member1/join1",
+  			type: "POST",
+  			data: "id="+id+"&pw="+pw+"&pwChk+"+pwChk+"&name="+name+"&tel="+tel+"&addr="+addr+"&email="+email,
+  			success: function() {
+  				// 회원 가입에 성공했을 경우
+  				alert("회원 가입이 되었습니다! 로그인 페이지로 이동합니다.")
+  				location.href = LOGIN PAGE;
+  			},
+  			error: function(response) {
+  				// 회원 가입에 실패했을 경우
+//   				console.log(response);
+  				
+  				if(response.status == 409) {
+  				// 1. 아이디, 연락처, 이메일이 사용 중 일때 : 409
+  					alert("아이디, 이메일, 연락처 중 이미 사용중인 정보가 있습니다");
+  				} else if(response.status == 400) {
+  				// 2. 파라미터가 규칙에 맞지 않을 때 : 400
+  					alert("가입 정보를 올바르게 입력 해야합니다");
+  				}
+  				
+  				
+  			}
+  		})
+  	})
   </script>
   </body>
 </html>
