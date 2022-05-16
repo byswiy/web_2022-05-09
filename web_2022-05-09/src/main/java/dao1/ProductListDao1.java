@@ -113,10 +113,10 @@ public class ProductListDao1 {
 		List<ProductInfo> productInfoList = new ArrayList<>();
 		
 		try {
-			String sql = "SELECT * FROM product_info LIMIT ?, 10";
+			String sql = "SELECT * FROM product_info LIMIT ?, 8";
 			
-			// 10이 의미하는 것은 한 페이지에 보여줘야할 상품의 수 1번 페이지라면 1-1 = 0 0*10 => 0
-			int startIndex = (pageNumber - 1) * 10;
+			// 8이 의미하는 것은 한 페이지에 보여줘야할 상품의 수 1번 페이지라면 1-1 = 0 0*10 => 0
+			int startIndex = (pageNumber - 1) * 8;
 
 			pstmt = conn.prepareStatement(sql);
 			

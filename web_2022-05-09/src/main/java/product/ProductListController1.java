@@ -28,7 +28,7 @@ public class ProductListController1 extends HttpServlet {
 		int amountOfProductInfo  = dao.getCount();
 		
 		// pageNumber와 amoutOfProductInfo 사용해서 없는 페이지 번호라면이라는 조건
-		int startIndex = (pageNumber-1) * 10;
+		int startIndex = (pageNumber-1) * 8;
 		if(startIndex >= amountOfProductInfo) {
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			return;
@@ -39,7 +39,7 @@ public class ProductListController1 extends HttpServlet {
 		// 불러온 공지사항 목록을 JSON으로 구성한다.
 		// JSON 데이터를 구성한다
 		// for문을 사용해서 json데이터를 꺼내온다
-		String data = "{\"amount\" : " + amountOfProductInfo + ",";
+		String data = "{\"amount\": " + amountOfProductInfo + ",";
 		data += "\"list\":[";
 		
 		for(ProductInfo productInfo : productInfoList) {
@@ -48,11 +48,13 @@ public class ProductListController1 extends HttpServlet {
 			int price = productInfo.getPrice();
 			String img = productInfo.getImg();
 			
-			String productJson = "{\"name\" : \"" + name + "\",\"category\" : \"" + category + "\",\"price\" : " + price + ",\"img\" : \"" + img + "\"}";
+			String productJson = "{\"name\":\"" + name + "\",\"category\":\"" + category + "\",\"price\":" + price + ",\"img\":\"" + img + "\"},";
 			data += productJson;
 		}
 		
+		data = data.substring(0, data.length()-1);
 		data += "]}";
+		
 
 		// json 데이터를 보낸다
 		response.setContentType("application/json;charset=UTF-8");
