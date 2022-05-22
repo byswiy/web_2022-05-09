@@ -175,7 +175,7 @@
   			url: "/shopping/member1/join1",
   			type: "POST",
   			data: "id="+id+"&pw="+pw+"&pwChk+"+pwChk+"&name="+name+"&tel="+tel+"&addr="+addr+"&email="+email,
-  			success: function() {
+  			success: function(productInfo) {
   				// 회원 가입에 성공했을 경우
   				alert("회원 가입이 되었습니다! 로그인 페이지로 이동합니다.")
   				location.href = LOGIN PAGE;
