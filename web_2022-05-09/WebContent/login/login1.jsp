@@ -38,7 +38,7 @@
         </label>
       </div>
       <button class="w-100 btn btn-lg btn-primary" id="login_btn" type="submit">로그인</button>
-      <button class="w-100 btn btn-lg btn-secondary" type="button" id="join_btn">회원가입</button>
+      <button class="w-100 btn btn-lg btn-secondary" type="submit" id="join_btn">회원가입</button>
     </form>
   </main>
   <script src="../js/jquery-3.6.0.min.js"></script>
@@ -59,6 +59,7 @@
 			data: "id="+id+"&pw="+pw,
 			success: function() {
 				alert("로그인에 성공했습니다");
+				location.href="/shopping/index1.jsp";
 			},
 			error: function() {
 				// 파라미터에 맞지 않을 때 400 반환
@@ -75,10 +76,6 @@
 	//회원가입 버튼을 눌렀을 떄
 	$("#join_btn").on("click", function() {
 		location.href="/shopping/join/join1.jsp";
-	});
-	
-	
-	
 	});
   </script>
   </body>

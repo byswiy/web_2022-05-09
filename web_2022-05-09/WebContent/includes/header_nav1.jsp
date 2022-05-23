@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/shopping/index1.jsp?active=home">
@@ -28,17 +31,24 @@
                                 </a>
                                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                                   <!-- 로그인 하지 않았을 때 -->
-                                  <li><a class="dropdown-item" href="/shopping/login/login1.jsp">로그인</a></li>
-                                  <li><a class="dropdown-item" href="/shopping/join/join1.jsp">회원가입</a></li>
-                                  <!-- 로그인 하지 않았을 때 -->
+                                  <c:if test="${loginUserInfo eq null }">
+                                  	<li><a class="dropdown-item" href="/shopping/login/login1.jsp">로그인</a></li>
+                                  	<li><a class="dropdown-item" href="/shopping/join/join1.jsp">회원가입</a></li>
+                                  </c:if>
+                                  
                                   <!-- 로그인 했을 때 -->
-                                  <li><a class="dropdown-item" href="#">정보 수정</a></li>
-                                  <li><a class="dropdown-item" href="#">로그아웃</a></li>
-                                  <!-- 로그인 했을 때 -->
+                                  <c:if test="${loginUserInfo ne null }">
+                                  	<li><a class="dropdown-item" href="/shopping/member1/login1">로그아웃</a></li>
+                                  	<li><a class="dropdown-item" href="#">회원 정보 수정</a></li>
+                                  </c:if>
                                 </ul>
-                              </div>
+                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+  	<script>
+  		
+    </script>

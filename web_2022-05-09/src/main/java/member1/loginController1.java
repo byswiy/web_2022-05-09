@@ -15,6 +15,15 @@ import vo1.MemberInfo;
 
 @WebServlet("/member1/login1")
 public class loginController1 extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 로그 아웃 처리
+		HttpSession session = req.getSession();
+		session.removeAttribute("loginUserInfo");
+
+		resp.sendRedirect("/shopping/index1.jsp");
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			// 아이디와 비밀번호의 파라미터 값을 꺼내온다
