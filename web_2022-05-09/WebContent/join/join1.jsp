@@ -16,7 +16,7 @@
 <body class="text-center">
     
   <main class="form-signin">
-    <form>
+    <form action="/shopping/member/join" method="POST">
       <h1 class="h3 mb-3 fw-normal">
     	<i class="bi bi-hand-index-thumb" id="rightHandLogo"></i>
         <i class="bi bi-hand-index-thumb" id="leftHandLogo"></i>
@@ -24,20 +24,32 @@
       </h1>
   
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" placeholder="아이디">
+        <input type="text" class="form-control" id="floatingInput" name="id" placeholder="아이디">
         <label for="floatingInput">아이디</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" name="pw" placeholder="Password">
         <label for="floatingPassword">비밀번호</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPasswordCheck" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPasswordCheck" name="pwChk" placeholder="Password">
         <label for="floatingPasswordCheck">비밀번호 확인</label>
       </div>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingName" placeholder="Name">
+        <input type="text" class="form-control" id="floatingName" name="name" placeholder="Name">
         <label for="floatingName">이름</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingTel" name="tel" placeholder="Tel">
+        <label for="floatingTel">연락처</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingAddr" name="addr" placeholder="Addr">
+        <label for="floatingAddr">주소</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingEmail" name="email" placeholder="Email">
+        <label for="floatingEmail">이메일</label>
       </div>
       
       <div class="form-floating">
@@ -83,10 +95,51 @@
         </ul>
       </div>
 
-      <button class="w-100 btn btn-lg btn-secondary" type="button">회원가입</button>
+      <button class="w-100 btn btn-lg btn-secondary" type="submit" id="join_btn">회원가입</button>
     </form>
   </main>
-  
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script>
+  	// 회원 가입을 위한 ajax
+  	$("#join_btn").on("click", function(event) {
+  		event.preventDefault();
+  		
+  		let $id = $("#floatingInput");
+  	  	let $pw = $("#floatingPassword");
+  	  	let $pwChk = $("#floatingPasswordCheck");
+  	  	let $name = $("#floatingName");
+  	  	let $tel = $("#floatingTel");
+  	  	let $addr = $("#floatingAddr");
+  	  	let $email = $("#floatingEmail");
+  	  	
+  	  	let id = $id.val();
+  	  	let pw = $pw.val();
+  	  	let pwChk = $pwChk.val();
+  	  	let name = $name.val();
+  	  	let tel = $tel.val();
+  	  	let addr = $addr.val();
+  	  	let email = $email.val();
+  	  	
+  	  	$.ajax({
+  	  		url: "/shopping/member1/join1",
+  	  		type: "POST",
+  	  		data: "id="+id+"&pw="+pw+"&pwChk="+pwChk+"&name="+name+"&tel="+tel+"&addr="+addr+"&email="+email,
+  	  		success: function() {
+  	  			alert("회원가입이 완료되었습니다! 로그인 페이지로 이동합니다");
+  	  			location.href = "/shopping/login/login1.jsp";
+  	  		},
+  	  		error: function(response) {
+  	  			if(response.status == 400) {
+  	  				alert("가입할 정보를 정확하게 입력해주세요");
+  	  			} else if(response.status == 401) {
+  	  				alert("아이디, 연락처, 이메일 중 하나가 이미 사용 중 입니다");
+  	  			}
+  	  		}
+  	  	});
+  	});
+  	
+  	
+  </script>
   </body>
 </html>
 
